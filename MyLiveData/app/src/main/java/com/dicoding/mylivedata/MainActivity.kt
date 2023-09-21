@@ -23,6 +23,6 @@ class MainActivity : AppCompatActivity() {
             val newText = this@MainActivity.resources.getString(R.string.seconds, aLong)
             binding.timerTextview.text = newText
         }
-        liveDataTimerViewModel.getElapsedf Time().observe(this, elapsedTimeObserver)
+        liveDataTimerViewModel.getElapsedTime().observe(this, elapsedTimeObserver)
     }
 }
