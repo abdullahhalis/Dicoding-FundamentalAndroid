@@ -1,4 +1,4 @@
-package com.dicoding.myunittest
+package com.dicoding.myreadwritefile
 
 import org.junit.Test
 
