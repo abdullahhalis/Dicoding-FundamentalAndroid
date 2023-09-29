@@ -26,6 +26,7 @@
         <activity
             android:name=".ui.detail.DetailActivity"
             android:exported="false"
+            android:parentActivityName=".ui.MainActivity"
             android:screenOrientation="portrait"
             android:configChanges="orientation|keyboardHidden"/>
         <activity

@@ -10,6 +10,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.mygithubuser.data.response.ItemsItem
 import com.dicoding.mygithubuser.databinding.FragmentFollowBinding
 import com.dicoding.mygithubuser.ui.detail.DetailViewModel
+import com.dicoding.mygithubuser.ui.list.ListAdapter
+import com.dicoding.mygithubuser.ui.showLoading
 
 
 class FollowFragment : Fragment() {
@@ -17,16 +19,10 @@ class FollowFragment : Fragment() {
     private lateinit var binding: FragmentFollowBinding
     private val detailViewModel by viewModels<DetailViewModel>()
 
-    companion object {
-        const val TAG = "FollowFragment"
-        const val ARG_POSITION = "postion"
-        const val ARG_USERNAME = "abdullahhalis"
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         binding = FragmentFollowBinding.inflate(inflater, container, false)
         return binding.root
@@ -41,8 +37,8 @@ class FollowFragment : Fragment() {
         detailViewModel.getListFollowers(username)
         detailViewModel.getListFollwing(username)
 
-        detailViewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
-            showLoading(isLoading)
+        detailViewModel.isLoading.observe(viewLifecycleOwner) {
+            binding.progressBar.showLoading(it)
         }
 
         if (position == 1){
@@ -60,19 +56,16 @@ class FollowFragment : Fragment() {
     }
 
     private fun setListUser(itemsItem: ArrayList<ItemsItem>) {
-        val listFollowAdapter = ListFollowAdapter(itemsItem)
+        val listFollowAdapter = ListAdapter(itemsItem)
         binding.apply {
             rvFollow.layoutManager = LinearLayoutManager(requireActivity())
             rvFollow.adapter = listFollowAdapter
         }
     }
 
-    private fun showLoading(isLoading: Boolean) {
-        if (isLoading) {
-            binding.progressBar.visibility = View.VISIBLE
-        } else {
-            binding.progressBar.visibility = View.GONE
-        }
+    companion object {
+        const val TAG = "FollowFragment"
+        const val ARG_POSITION = "postion"
+        const val ARG_USERNAME = "abdullahhalis"
     }
-
 }

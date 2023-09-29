@@ -6,4 +6,9 @@
     <string name="name">name</string>
     <string name="followers">%d Followers</string>
     <string name="following">%d Following</string>
+    <string name="splash">Splash</string>
+    <string name="user">User Image</string>
+    <string name="favorite">Favorite</string>
+    <string name="share">Share</string>
+    <string name="theme">Theme</string>
 </resources>

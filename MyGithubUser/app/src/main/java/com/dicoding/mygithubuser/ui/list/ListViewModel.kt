@@ -18,11 +18,6 @@ class ListViewModel : ViewModel() {
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading : LiveData<Boolean> = _isLoading
 
-    companion object {
-        private const val TAG = "MainViewModel"
-        private const val QUERY = "abdullah"
-    }
-
     init {
         getUsers(QUERY)
     }
@@ -53,4 +48,8 @@ class ListViewModel : ViewModel() {
         })
     }
 
+    companion object {
+        private const val TAG = "MainViewModel"
+        private const val QUERY = "abdullah"
+    }
 }

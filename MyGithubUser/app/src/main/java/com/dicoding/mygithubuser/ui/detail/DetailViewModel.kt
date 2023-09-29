@@ -5,7 +5,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.dicoding.mygithubuser.data.response.DetailResponse
-import com.dicoding.mygithubuser.data.response.GithubResponse
 import com.dicoding.mygithubuser.data.response.ItemsItem
 import com.dicoding.mygithubuser.data.retrofit.ApiConfig
 import com.dicoding.mygithubuser.ui.follow.FollowFragment

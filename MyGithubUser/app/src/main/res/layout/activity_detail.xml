@@ -30,6 +30,7 @@
                 android:id="@+id/imageView"
                 android:layout_width="200dp"
                 android:layout_height="200dp"
+                android:contentDescription="@string/detail"
                 android:layout_marginTop="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -66,8 +67,7 @@
                 android:layout_marginTop="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvUsername"
-                app:tabTextColor="?attr/colorPrimary" />
+                app:layout_constraintTop_toBottomOf="@id/tvUsername" />
 
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/view_pager"
@@ -78,6 +78,19 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tabs" />
 
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fab_add"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                android:foregroundGravity="bottom"
+                app:fabSize="normal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:srcCompat="@drawable/ic_favorite_border"
+                android:contentDescription="@string/favorite"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>
 

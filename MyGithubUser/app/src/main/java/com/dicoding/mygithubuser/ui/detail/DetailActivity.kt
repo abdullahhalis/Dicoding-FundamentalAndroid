@@ -2,23 +2,20 @@ package com.dicoding.mygithubuser.ui.detail
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
+import android.view.Menu
 import android.view.View
 import androidx.activity.viewModels
-import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.dicoding.mygithubuser.R
 import com.dicoding.mygithubuser.databinding.ActivityDetailBinding
 import com.dicoding.mygithubuser.ui.follow.SectionPagerAdapter
+import com.dicoding.mygithubuser.ui.loadImage
+import com.dicoding.mygithubuser.ui.showLoading
 import com.google.android.material.tabs.TabLayoutMediator
 
 class DetailActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailBinding
     private val detailViewModel by viewModels<DetailViewModel>()
-    companion object {
-        const val TAG = "DetailActivity"
-        const val USERNAME = "abdullahhalis"
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,14 +31,11 @@ class DetailActivity : AppCompatActivity() {
 
         detailViewModel.userData.observe(this) { userData ->
             binding.apply {
-                Glide.with(this@DetailActivity)
-                    .load(userData.avatarUrl)
-                    .circleCrop()
-                    .into(imageView)
+                imageView.loadImage(userData.avatarUrl)
                 tvUsername.text = userData.login
                 tvName.text = userData.name
 
-                val follow = mutableListOf<String>(
+                val follow = mutableListOf(
                     String.format(getString(R.string.followers), userData.followers),
                     String.format(getString(R.string.following), userData.following)
                 )
@@ -56,17 +50,19 @@ class DetailActivity : AppCompatActivity() {
         }
 
         detailViewModel.isLoading.observe(this) {
-            showLoading(it)
+            binding.progressBar.showLoading(it)
         }
 
 
     }
 
-    private fun showLoading(isLoading: Boolean) {
-        if (isLoading) {
-            binding.progressBar.visibility = View.VISIBLE
-        } else {
-            binding.progressBar.visibility = View.GONE
-        }
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_detail, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    companion object {
+        const val TAG = "DetailActivity"
+        const val USERNAME = "abdullahhalis"
     }
 }
