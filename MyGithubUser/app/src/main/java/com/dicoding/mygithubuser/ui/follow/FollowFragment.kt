@@ -7,11 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.dicoding.mygithubuser.data.response.ItemsItem
+import com.dicoding.mygithubuser.data.remote.response.ItemsItem
 import com.dicoding.mygithubuser.databinding.FragmentFollowBinding
 import com.dicoding.mygithubuser.ui.detail.DetailViewModel
 import com.dicoding.mygithubuser.ui.list.ListAdapter
-import com.dicoding.mygithubuser.ui.showLoading
+import com.dicoding.mygithubuser.utils.showLoading
 
 
 class FollowFragment : Fragment() {

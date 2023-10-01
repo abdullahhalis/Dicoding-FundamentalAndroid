@@ -6,16 +6,16 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
+import com.dicoding.mygithubuser.data.FavoriteUserRepository
 import com.dicoding.mygithubuser.data.remote.response.GithubResponse
 import com.dicoding.mygithubuser.data.remote.response.ItemsItem
 import com.dicoding.mygithubuser.data.remote.retrofit.ApiConfig
-import com.dicoding.mygithubuser.utils.SettingPreferences
 import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class MainViewModel(private val settingPreferences: SettingPreferences) : ViewModel() {
+class MainViewModel(private val favoriteUserRepository: FavoriteUserRepository) : ViewModel() {
     private val _listUser = MutableLiveData<List<ItemsItem>>()
     val listUser: LiveData<List<ItemsItem>> = _listUser
 
@@ -53,12 +53,12 @@ class MainViewModel(private val settingPreferences: SettingPreferences) : ViewMo
     }
 
     fun getThemeSetting():LiveData<Boolean> {
-        return settingPreferences.getThemeSetting().asLiveData()
+        return favoriteUserRepository.getThemeSetting().asLiveData()
     }
 
     fun saveThemeSetting(isDarkModeActive: Boolean) {
         viewModelScope.launch {
-            settingPreferences.saveThemeSetting(isDarkModeActive)
+            favoriteUserRepository.saveThemeSetting(isDarkModeActive)
         }
     }
 

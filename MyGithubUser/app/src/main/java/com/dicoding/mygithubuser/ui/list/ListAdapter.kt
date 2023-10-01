@@ -4,22 +4,31 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.dicoding.mygithubuser.data.response.ItemsItem
+import com.dicoding.mygithubuser.data.local.entity.FavoriteUser
+import com.dicoding.mygithubuser.data.remote.response.ItemsItem
 import com.dicoding.mygithubuser.databinding.ItemUserBinding
 import com.dicoding.mygithubuser.ui.detail.DetailActivity
-import com.dicoding.mygithubuser.ui.loadImage
+import com.dicoding.mygithubuser.utils.loadImage
 
-class ListAdapter(private val listUser: List<ItemsItem>) :
+class ListAdapter(private val listUser: List<Any>) :
     RecyclerView.Adapter<ListAdapter.MyViewHolder>() {
 
     class MyViewHolder(private val binding: ItemUserBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: ItemsItem) {
+        fun bind(item: Any) {
+            if (item is ItemsItem) {
+                setList(item.login, item.avatarUrl)
+            }else if (item is FavoriteUser) {
+                setList(item.username, item.avatarUrl)
+            }
+        }
+
+        private fun setList(username: String, avatarUrl: String){
             binding.apply {
-                imgItemUser.loadImage(item.avatarUrl)
-                tvUsername.text = item.login
+                imgItemUser.loadImage(avatarUrl)
+                tvUsername.text = username
                 itemView.setOnClickListener {
                     val intentDetail = Intent(itemView.context, DetailActivity::class.java)
-                    intentDetail.putExtra(DetailActivity.USERNAME, item.login)
+                    intentDetail.putExtra(DetailActivity.USERNAME, username)
                     itemView.context.startActivity(intentDetail)
                 }
             }
