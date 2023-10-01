@@ -1,4 +1,4 @@
-package com.dicoding.mygithubuser.ui
+package com.dicoding.mygithubuser.utils
 
 import android.view.View
 import android.widget.ImageView

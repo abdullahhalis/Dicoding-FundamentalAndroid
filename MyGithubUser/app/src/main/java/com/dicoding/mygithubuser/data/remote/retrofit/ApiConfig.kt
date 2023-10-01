@@ -1,4 +1,4 @@
-package com.dicoding.mygithubuser.data.retrofit
+package com.dicoding.mygithubuser.data.remote.retrofit
 
 import com.dicoding.mygithubuser.BuildConfig
 import okhttp3.Interceptor

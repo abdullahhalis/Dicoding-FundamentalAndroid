@@ -4,14 +4,18 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.dicoding.mygithubuser.data.response.GithubResponse
-import com.dicoding.mygithubuser.data.response.ItemsItem
-import com.dicoding.mygithubuser.data.retrofit.ApiConfig
+import androidx.lifecycle.asLiveData
+import androidx.lifecycle.viewModelScope
+import com.dicoding.mygithubuser.data.remote.response.GithubResponse
+import com.dicoding.mygithubuser.data.remote.response.ItemsItem
+import com.dicoding.mygithubuser.data.remote.retrofit.ApiConfig
+import com.dicoding.mygithubuser.utils.SettingPreferences
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class ListViewModel : ViewModel() {
+class MainViewModel(private val settingPreferences: SettingPreferences) : ViewModel() {
     private val _listUser = MutableLiveData<List<ItemsItem>>()
     val listUser: LiveData<List<ItemsItem>> = _listUser
 
@@ -46,6 +50,16 @@ class ListViewModel : ViewModel() {
                 Log.e(TAG, "onFailure : ${t.message}")
             }
         })
+    }
+
+    fun getThemeSetting():LiveData<Boolean> {
+        return settingPreferences.getThemeSetting().asLiveData()
+    }
+
+    fun saveThemeSetting(isDarkModeActive: Boolean) {
+        viewModelScope.launch {
+            settingPreferences.saveThemeSetting(isDarkModeActive)
+        }
     }
 
     companion object {

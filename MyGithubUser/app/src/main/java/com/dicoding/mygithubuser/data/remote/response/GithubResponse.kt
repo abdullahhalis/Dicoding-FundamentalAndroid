@@ -1,4 +1,4 @@
-package com.dicoding.mygithubuser.data.response
+package com.dicoding.mygithubuser.data.remote.response
 
 import com.google.gson.annotations.SerializedName
 

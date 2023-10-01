@@ -1,8 +1,8 @@
-package com.dicoding.mygithubuser.data.retrofit
+package com.dicoding.mygithubuser.data.remote.retrofit
 
-import com.dicoding.mygithubuser.data.response.DetailResponse
-import com.dicoding.mygithubuser.data.response.GithubResponse
-import com.dicoding.mygithubuser.data.response.ItemsItem
+import com.dicoding.mygithubuser.data.remote.response.DetailResponse
+import com.dicoding.mygithubuser.data.remote.response.GithubResponse
+import com.dicoding.mygithubuser.data.remote.response.ItemsItem
 import retrofit2.Call
 import retrofit2.http.*
 
